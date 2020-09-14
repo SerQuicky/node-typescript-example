@@ -11,7 +11,9 @@ export class Connector {
             }
 
             await this.createTables();
-            await this.addEntries();
+
+            // adds entries to the tables, should only be use at the first server start
+            //await this.addEntries();
         })
     }
 
@@ -23,7 +25,8 @@ export class Connector {
                 " name TEXT," +
                 " acronym TEXT," +
                 " foundingYear INTEGER," +
-                " country TEXT " +
+                " country TEXT, " +
+                " UNIQUE(name) " +
                 ")");
 
             await this.executeRequest("CREATE TABLE if not exists car (" +
